@@ -2,7 +2,6 @@
 
 A simple MongoMapper plugin to make adding comments to your models easy
 
-
 == Usage
 
 Install the gem
@@ -36,7 +35,9 @@ You must implement the on_add_comment callback! - however it can be an empty imp
     @post.comments_count = 1
     @posts.comments = [<Comment>]
 
-  
+The commentor association is polymorphic, so any class will probably work, but I expect the commentor would normally be a User object
+
+
 == Contributing to mm-commentable
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet

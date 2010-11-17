@@ -29,6 +29,14 @@ describe "MongoMapper::Plugins::ActsAsCommentable" do
       @commentable.comments.size.should equal 1
     end
     
+    it "should assign the commentor" do
+      @commentable.add_comment!("first comment", @luke)
+      comment = @commentable.comments.first
+      comment.commentor_id.should == @luke.id
+      comment.commentor_type.should == @luke.class.name
+      comment.commentor.should == @luke
+    end
+    
     it "should throw NotImplementedError if the :on_add_vote callback has not inplemented" do
       commentable = CommentableWithoutCallback.new
       lambda {
@@ -67,6 +75,9 @@ describe "Comment" do
   it "should have a commentor association" do
     @comment.should respond_to(:commentor_id=)
     @comment.should respond_to(:commentor_id)
+    @comment.should respond_to(:commentor_type=)
+    @comment.should respond_to(:commentor_type)
+    
     @comment.commentor.association.should be_belongs_to
   end
   

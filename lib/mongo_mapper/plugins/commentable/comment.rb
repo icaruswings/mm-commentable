@@ -5,7 +5,8 @@ class Comment
   key :body, String, :required => true
 
   key :commentor_id, ObjectId
-  belongs_to :commentor, :class_name => 'User'
+  key :commentor_type, String
+  belongs_to :commentor, :polymorphic => true
 
   embedded_in :commentable
 end
