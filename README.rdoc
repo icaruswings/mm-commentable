@@ -1,8 +1,43 @@
-= mm-acts_as_commentable
+= mm-commentable
 
-Description goes here.
+A simple MongoMapper plugin to make adding comments to your models easy
 
-== Contributing to mm-acts_as_commentable
+
+== Usage
+
+Install the gem
+  
+    gem install mm-commentable
+
+
+Or add it to your Gemfile
+
+    gem 'mm-commentable'
+  
+  
+Then add the commentable plugin to you MongoMapper::Document
+
+    class Post
+      include MongoMapper::Document
+      plugin MongoMapper::Plugins::Commentable
+
+      def on_add_comment(comment)
+        do something when a comment is added...
+      end
+    end
+    
+You must implement the on_add_comment callback! - however it can be an empty implementation
+  
+    @post = Post.create
+    @commentor = User.create
+  
+    @post.add_comment("great post..", @user)
+  
+    @post.comments_count = 1
+    @posts.comments = [<Comment>]
+
+  
+== Contributing to mm-commentable
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
@@ -12,8 +47,9 @@ Description goes here.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
+
 == Copyright
 
-Copyright (c) 2010 Luke. See LICENSE.txt for
+Copyright (c) 2010 Luke Cunningham. See LICENSE.txt for
 further details.
 
