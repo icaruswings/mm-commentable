@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "lib/mm-commentable.rb",
     "lib/mongo_mapper/plugins/commentable.rb",
     "lib/mongo_mapper/plugins/commentable/comment.rb",
+    "mm-commentable.gemspec",
     "spec/mm-commentable_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/models.rb"
