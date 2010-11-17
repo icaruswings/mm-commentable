@@ -15,10 +15,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "mm-commentable"
   gem.homepage = "http://github.com/icaruswings/mm-commentable"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A very simple mongomapper plugin to make you models commentable}
+  gem.description = %Q{A very simple mongomapper plugin to make you models commentable}
   gem.email = "luke@icaruswings.com"
-  gem.authors = ["Luke"]
+  gem.authors = ["Luke Cunningham"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
