@@ -30,7 +30,7 @@ You must implement the on_add_comment callback! - however it can be an empty imp
     @post = Post.create
     @commentor = User.create
   
-    @post.add_comment("great post..", @user)
+    @post.add_comment!("great post..", @user)
   
     @post.comments_count = 1
     @posts.comments = [<Comment>]

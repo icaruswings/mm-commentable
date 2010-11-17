@@ -15,7 +15,7 @@ describe "MongoMapper::Plugins::ActsAsCommentable" do
      @commentable.comments_count.should equal 0
   end
 
-  describe "add_vote!" do
+  describe "add_comment!" do
   
     it "should increment the comments_count attribute" do
       lambda {
