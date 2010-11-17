@@ -26,9 +26,8 @@ module MongoMapper
           return false unless comment.valid?
           
           self.increment('comments_count' => 1)
-          on_add_comment(comment)
 
-          true
+          on_add_comment(comment)
         end
 
         def on_add_comment(comment)
