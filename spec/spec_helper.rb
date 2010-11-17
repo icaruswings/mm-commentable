@@ -16,36 +16,6 @@ require 'mm-commentable'
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
-def Doc(name=nil, &block)
-  klass = Class.new do
-    include MongoMapper::Document
-    set_collection_name :test
-
-    if name
-      class_eval "def self.name; '#{name}' end"
-      class_eval "def self.to_s; '#{name}' end"
-    end
-  end
-
-  klass.class_eval(&block) if block_given?
-  klass.collection.remove
-  klass
-end
-
-def EDoc(name=nil, &block)
-  klass = Class.new do
-    include MongoMapper::EmbeddedDocument
-
-    if name
-      class_eval "def self.name; '#{name}' end"
-      class_eval "def self.to_s; '#{name}' end"
-    end
-  end
-
-  klass.class_eval(&block) if block_given?
-  klass
-end
-
 log_dir = File.expand_path('../../log', __FILE__)
 FileUtils.mkdir_p(log_dir) unless File.exist?(log_dir)
 
