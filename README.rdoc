@@ -25,21 +25,24 @@ Then add the commentable plugin to you MongoMapper::Document
       end
     end
     
-You must implement the on_add_comment callback! - however it can be an empty implementation
+You must implement the #on_add_comment callback! - however it can be an empty implementation
+It is called when a valid comment is added to the commentable item with #add_comment!
   
     @post = Post.create
     @commentor = User.create
   
     @post.add_comment!("great post..", @user)
   
-    @post.comments_count = 1
-    @posts.comments = [<Comment>]
+    @post.comments_count # => 1
+    @posts.comments # => [<Comment>]
 
-The commentor association is polymorphic, so any class will probably work, but I expect the commentor would normally be a User object
+The commentor association is polymorphic, so any class will probably work,
+I expect the commentor would normally be an instance of class <User>,
+but it could be a <Person> or an <Account> and it will still work
 
 
 == Contributing to mm-commentable
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
