@@ -23,7 +23,7 @@ module MongoMapper
             :created_at => Time.now
           })
           
-          return false unless comment.valid?
+          return false unless comment.save
           
           self.increment('comments_count' => 1)
 
