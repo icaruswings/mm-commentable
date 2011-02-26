@@ -7,13 +7,12 @@ module MongoMapper
       def self.configure(model)
         model.class_eval do
           key :comments_count, Integer, :default => 0
-        
-          def commentable?; true; end
           many :comments
         end
       end
       
       module InstanceMethods
+        def commentable?; true; end
 
         def add_comment!(comment_body, commentor)
           
@@ -25,7 +24,6 @@ module MongoMapper
           return false unless comment.save
           
           self.increment('comments_count' => 1)
-
           on_add_comment(comment)
         end
 
