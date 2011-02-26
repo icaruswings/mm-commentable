@@ -26,12 +26,15 @@ describe "MongoMapper::Plugins::ActsAsCommentable" do
   
     it "should add the comment" do
       @commentable.add_comment!("first comment", @luke)
+      @commentable.reload
+
       @commentable.comments.size.should equal 1
     end
     
     it "should assign the commentor" do
       @commentable.add_comment!("first comment", @luke)
       comment = @commentable.comments.first
+
       comment.commentor_id.should == @luke.id
       comment.commentor_type.should == @luke.class.name
       comment.commentor.should == @luke
