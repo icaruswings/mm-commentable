@@ -7,9 +7,9 @@ module MongoMapper
       def self.configure(model)
         model.class_eval do
           key :comments_count, Integer, :default => 0
-          has_many :comments
         
           def commentable?; true; end
+          many :comments
         end
       end
       
@@ -19,8 +19,7 @@ module MongoMapper
           
           comment = self.comments.build({
             :body => comment_body,
-            :commentor => commentor,
-            :created_at => Time.now
+            :commentor => commentor
           })
           
           return false unless comment.save
