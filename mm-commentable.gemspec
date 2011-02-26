@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Luke Cunningham"]
-  s.date = %q{2010-11-18}
+  s.date = %q{2011-02-26}
   s.description = %q{A very simple mongomapper plugin to make you models commentable}
   s.email = %q{luke@icaruswings.com}
   s.extra_rdoc_files = [
