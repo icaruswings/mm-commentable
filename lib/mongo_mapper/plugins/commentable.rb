@@ -4,14 +4,15 @@ module MongoMapper
   module Plugins
     module Commentable
       
-      def self.configure(model)
-        model.class_eval do
-          key :comments_count, Integer, :default => 0
-          many :comments
-        end
+      extend ActiveSupport::Concern
+
+      included do
+        key :comments_count, Integer, :default => 0
+        many :comments
       end
       
       module InstanceMethods
+        
         def commentable?; true; end
 
         def add_comment!(comment_body, commentor)

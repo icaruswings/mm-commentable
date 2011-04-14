@@ -81,7 +81,7 @@ describe "Comment" do
     @comment.should respond_to(:commentor_type=)
     @comment.should respond_to(:commentor_type)
     
-    @comment.commentor.association.should be_belongs_to
+    @comment.associations[:commentor].should be_a(MongoMapper::Plugins::Associations::BelongsToAssociation)
   end
   
 end
