@@ -11,31 +11,22 @@ module MongoMapper
         many :comments
       end
       
-      module InstanceMethods
+      def commentable?; true; end
+
+      def add_comment!(comment_body, commentor)
         
-        def commentable?; true; end
-
-        def add_comment!(comment_body, commentor)
-          
-          comment = self.comments.build({
-            :body => comment_body,
-            :commentor => commentor
-          })
-          
-          return false unless comment.save
-          
-          self.increment('comments_count' => 1)
-          on_add_comment(comment)
-        end
-
-        def on_add_comment(comment)
-          raise NotImplementedError
-        end
-
+        comment = self.comments.build({
+          :body => comment_body,
+          :commentor => commentor
+        })
+        
+        return false unless comment.save
+        
+        increment({ comments_count: 1 })
+        on_add_comment(comment) if respond_to? :on_add_comment
       end
 
       module ClassMethods
-        
       end
     
     end

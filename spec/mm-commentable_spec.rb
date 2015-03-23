@@ -8,11 +8,11 @@ describe "MongoMapper::Plugins::ActsAsCommentable" do
   end
 
   it "should be commentable" do
-    @commentable.should be_commentable
+    expect(@commentable).to be_commentable
   end
 
   it "should have a comments_count attribute that defaults to 0" do
-     @commentable.comments_count.should equal 0
+     expect(@commentable.comments_count).to be_zero
   end
 
   describe "add_comment!" do
@@ -28,27 +28,18 @@ describe "MongoMapper::Plugins::ActsAsCommentable" do
       @commentable.add_comment!("first comment", @luke)
       @commentable.reload
 
-      @commentable.comments.size.should equal 1
+      expect(@commentable.comments.size).to be 1
     end
     
     it "should assign the commentor" do
       @commentable.add_comment!("first comment", @luke)
       comment = @commentable.comments.first
 
-      comment.commentor_id.should == @luke.id
-      comment.commentor_type.should == @luke.class.name
-      comment.commentor.should == @luke
-    end
-    
-    it "should throw NotImplementedError if the :on_add_vote callback has not inplemented" do
-      commentable = CommentableWithoutCallback.new
-      lambda {
-        commentable.add_comment!(1, @luke)
-      }.should raise_error(NotImplementedError)
+      expect(comment.commentor).to equal @luke
     end
     
     it "should call :on_add_vote if the callback has been implemented" do
-      @commentable.should_receive(:on_add_comment)
+      expect(@commentable).to receive(:on_add_comment)
       @commentable.add_comment!(1, @luke)
     end
   
@@ -63,25 +54,21 @@ describe "Comment" do
   end
   
   it "should be embeddable?" do
-    Comment.embeddable?.should be_true
-  end
-  
-  it "should be embeddable?" do
-    Comment.embeddable?.should be_true
+    expect(Comment).to be_embeddable
   end
   
   it "should have a created_at key" do
-    @comment.should respond_to(:created_at=)
-    @comment.should respond_to(:created_at)
+    expect(@comment).to respond_to(:created_at=)
+    expect(@comment).to respond_to(:created_at)
   end
   
   it "should have a commentor association" do
-    @comment.should respond_to(:commentor_id=)
-    @comment.should respond_to(:commentor_id)
-    @comment.should respond_to(:commentor_type=)
-    @comment.should respond_to(:commentor_type)
-    
-    @comment.associations[:commentor].should be_a(MongoMapper::Plugins::Associations::BelongsToAssociation)
+    expect(@comment).to respond_to(:commentor_id=)
+    expect(@comment).to respond_to(:commentor_id)
+    expect(@comment).to respond_to(:commentor_type=)
+    expect(@comment).to respond_to(:commentor_type)
+
+    expect(@comment.associations[:commentor]).to be_a(MongoMapper::Plugins::Associations::BelongsToAssociation)
   end
   
 end
